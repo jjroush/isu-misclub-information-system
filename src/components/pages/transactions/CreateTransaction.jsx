@@ -1,5 +1,5 @@
 import React from 'react';
-import { Column, InputGroup, ButtonGroup, Button } from '../common/index';
+import { Column, InputGroup, ButtonGroup, Button } from '../../common/index';
 import { isValidInput } from '../../../utils/validation';
 import { ipcMysql } from '../../../actions/ipcActions';
 
@@ -10,7 +10,10 @@ export default class CreateTransaction extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            eventName: '',
+            transactionName: '',
+            transactionDate: '',
+            transactionAmount: '',
+            isWidthrawl: '',
             showFormErrors: false,
             isLoading: false,
         };
@@ -25,7 +28,7 @@ export default class CreateTransaction extends React.Component {
             <Column title='Create Transaction'>
                 <form onSubmit={this._handleSubmit} onReset={this._handleChange}>
                 <InputGroup id='transaction-name' value={transactionName} onChange={this._handleChange}
-                            showErrors={this._getFormValidationState} placeholder='e.g. MIS Club Career Night'
+                            showErrors={this._getFormValidationState} placeholder='e.g. Food Expenses'
                             required autoFocus>
                             Transaction name
                             </InputGroup>

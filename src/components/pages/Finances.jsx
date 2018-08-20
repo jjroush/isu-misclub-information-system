@@ -1,13 +1,14 @@
 import React from 'react';
+import { PageView } from '../common';
+import CreateTransaction from './transactions/CreateTransaction';
 
-
-export default class Finances extends React.Component {
+class Finances extends React.Component {
 
 	render() {
 		return (
-			<div>
-                💵😎🤪FINANCES🤪😎💵 
-			</div>
+			<PageView>
+				<CreateTransaction {...this.props}/>
+			</PageView>
 		);
 	}
 
@@ -15,4 +16,6 @@ export default class Finances extends React.Component {
 		window.scrollTo(0, 0);
 	}
 }
+
+export default Finances;
   

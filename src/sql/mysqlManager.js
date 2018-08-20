@@ -207,6 +207,10 @@ class mysqlManager {
 		);
 	}
 
+	getTransactions() {
+		
+	}
+
 	queryEvents(dateRangeStart, dateRangeEnd, eventName = '') {
 		return this.sqlQueryHandler(
 			'SELECT event_id,event_name,DATE_FORMAT(event_date,\'%b %e, %Y\') as event_date ' +
