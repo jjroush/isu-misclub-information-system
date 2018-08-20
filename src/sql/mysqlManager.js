@@ -208,7 +208,9 @@ class mysqlManager {
 	}
 
 	getTransactions() {
-		
+		return this.sqlQueryHandler(
+			`SELECT * FROM ${is_transaction_dev}`
+		);
 	}
 
 	queryEvents(dateRangeStart, dateRangeEnd, eventName = '') {
