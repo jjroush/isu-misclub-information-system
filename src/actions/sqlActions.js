@@ -9,6 +9,15 @@ const { dialog } = require('electron'),
 		require('../sql/sqlConstants');
 
 const sqlActions = (mysql, logger) => ({
+	[ipcMysql.RETRIEVE_TRANSACTIONS]: async () => {
+		try {
+			return await mysql.getTransactions();
+		} catch (error) {
+			const errorMessage = 'Error while retrieving transactions';
+			logger.error(error, errorMessage, true);
+			throw new Error(errorMessage);
+		}
+	},
 	[ipcMysql.RETRIEVE_EVENTS_TODAY]: async () => {
 		try {
 			return await mysql.findEventsToday();
