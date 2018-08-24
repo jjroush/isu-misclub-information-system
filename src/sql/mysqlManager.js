@@ -207,7 +207,8 @@ class mysqlManager {
 		);
 	}
 
-	getTransactions() {
+	retrieveTransactions() {
+		console.log('***mysqlManager.js***')
 		return this.sqlQueryHandler(
 			`SELECT * FROM ${is_transaction}`
 		);
@@ -233,4 +234,5 @@ const is_activity_history = _determineTableNameForEnv('is_activity_history');
 // const is_admin_history = _determineTableNameForEnv('is_admin_history');
 const is_attendance = _determineTableNameForEnv('is_attendance');
 const is_event = _determineTableNameForEnv('is_event');
+const is_transaction = _determineTableNameForEnv('is_transaction');
 const is_member = _determineTableNameForEnv('is_member');

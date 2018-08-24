@@ -11,7 +11,8 @@ const { dialog } = require('electron'),
 const sqlActions = (mysql, logger) => ({
 	[ipcMysql.RETRIEVE_TRANSACTIONS]: async () => {
 		try {
-			return await mysql.getTransactions();
+			console.log('***sqlActions.js***');
+			return await mysql.retrieveTransactions();
 		} catch (error) {
 			const errorMessage = 'Error while retrieving transactions';
 			logger.error(error, errorMessage, true);

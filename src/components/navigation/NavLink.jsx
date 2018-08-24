@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { addReportData, selectView, setEventsToday } from '../../actions/reduxActions';
+import { addReportData, selectView, setEventsToday, setTransactions } from '../../actions/reduxActions';
 import { ipcMysql } from '../../actions/ipcActions';
 
 const { ipcRenderer } = window.require('electron');
@@ -64,6 +64,14 @@ const mapDispatchToProps = dispatch => ({
 					dispatch(selectView(id));
 				}
 				break;
+			case 'finances':
+				ipcRenderer.send(ipcMysql.EXECUTE_SQL, ipcMysql.RETRIEVE_TRANSACTIONS);
+				ipcRenderer.once(ipcMysql.RETRIEVE_TRANSACTIONS, (transactions, status) => {
+					if (status === ipcMysql.SUCCESS) {
+						dispatch(setTransactions(transactions));
+					}
+					dispatch(selectView(id));
+				});
 			default:
 				dispatch(selectView(id));
 		}
