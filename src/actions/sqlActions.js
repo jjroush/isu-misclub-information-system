@@ -12,7 +12,8 @@ const sqlActions = (mysql, logger) => ({
 	[ipcMysql.RETRIEVE_TRANSACTIONS]: async () => {
 		try {
 			console.log('***sqlActions.js***');
-			return await mysql.retrieveTransactions();
+			mysql.getTransactions().then(function(result) {console.log(result)});
+			return await mysql.getTransactions();
 		} catch (error) {
 			const errorMessage = 'Error while retrieving transactions';
 			logger.error(error, errorMessage, true);
@@ -21,6 +22,7 @@ const sqlActions = (mysql, logger) => ({
 	},
 	[ipcMysql.RETRIEVE_EVENTS_TODAY]: async () => {
 		try {
+			mysql.findEventsToday().then(function(result) {console.log(result)});
 			return await mysql.findEventsToday();
 		} catch (error) {
 			const errorMessage = 'Error while retrieving events for today';

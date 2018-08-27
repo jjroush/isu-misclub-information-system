@@ -207,10 +207,10 @@ class mysqlManager {
 		);
 	}
 
-	retrieveTransactions() {
+	getTransactions() {
 		console.log('***mysqlManager.js***')
 		return this.sqlQueryHandler(
-			`SELECT * FROM ${is_transaction}`
+			`SELECT * FROM ${is_transaction} ORDER BY id DESC`,
 		);
 	}
 

@@ -66,12 +66,11 @@ const mapDispatchToProps = dispatch => ({
 				break;
 			case 'finances':
 				ipcRenderer.send(ipcMysql.EXECUTE_SQL, ipcMysql.RETRIEVE_TRANSACTIONS);
-				ipcRenderer.once(ipcMysql.RETRIEVE_TRANSACTIONS, (transactions, status) => {
-					if (status === ipcMysql.SUCCESS) {
+				ipcRenderer.once(ipcMysql.RETRIEVE_TRANSACTIONS, (event, transactions, status) => {
 						dispatch(setTransactions(transactions));
-					}
-					dispatch(selectView(id));
+						dispatch(selectView(id));
 				});
+				break;
 			default:
 				dispatch(selectView(id));
 		}

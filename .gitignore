@@ -20,6 +20,7 @@
 
 # ide
 .idea
+.vscode
 
 # project
 *.log*
