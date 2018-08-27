@@ -18,13 +18,18 @@ export default class AllTransactions extends React.Component {
         return (
             <Column title='Transactions' style={{paddingLeft:'40px'}}>
                 <p>{Boolean(transactionsTable) ?
-                        'Transaction History.' :
+                        null :
                         'No transactions available.'
                     }</p>
-                    {transactionsTable}
             {Boolean(transactionsTable) &&
                 <Table>
                     <tbody>
+                        <tr>
+                            <th>Transaction Name</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>NetID</th>
+                        </tr>
                         {transactionsTable}
                     </tbody>
                 </Table>
@@ -37,7 +42,10 @@ export default class AllTransactions extends React.Component {
         return transactions && transactions.length ? transactions.map(transaction => (
             <tr id={transaction.id} key={transaction.id}>
                 <td className='event-name'>{transaction.name}</td>
+                <td className={transaction.withdrawl ? 'transaction-negative' : 'transaction-positive'}>{Number(transaction.amount).toFixed(2)}</td>
+                <td>{transaction.date}</td>
+                <td>{transaction.netid}</td>
             </tr>
-        )) : 'dang';
+        )) : null;
     }
 }
