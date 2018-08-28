@@ -85,6 +85,7 @@ class mysqlManager {
 	}
 
 	deleteEvent(eventId) {
+		console.log('query' ,[eventId]);
 		return this.sqlQueryHandler(
 			`DELETE FROM ${is_event} WHERE event_id=?`,
 			[eventId]
@@ -211,6 +212,14 @@ class mysqlManager {
 		console.log('***mysqlManager.js***')
 		return this.sqlQueryHandler(
 			`SELECT * FROM ${is_transaction} ORDER BY id DESC`,
+		);
+	}
+
+	deleteTransaction(id) {
+		console.log('query' ,[id]);
+		return this.sqlQueryHandler(
+			`DELETE FROM ${is_transaction} WHERE id=?`,
+			[id]
 		);
 	}
 

@@ -9,7 +9,7 @@ class Finances extends React.Component {
 	render() {
 		return (
 			<PageView>
-				{/* <CreateTransaction {...this.props}/> */}
+				<CreateTransaction {...this.props}/>
 				<Transactions {...this.props} />
 			</PageView>
 		);
