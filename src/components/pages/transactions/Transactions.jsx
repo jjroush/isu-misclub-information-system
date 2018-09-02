@@ -57,17 +57,16 @@ export default class AllTransactions extends React.Component {
     _handleRowClick({target}) {
         if (target.className === 'delete') {
             const id = target.parentNode.parentNode.id;
-            console.log('target ID', {id});
             ipcRenderer.send(ipcMysql.EXECUTE_SQL, ipcMysql.DELETE_TRANSACTION, {id});
-            ipcRenderer.once(ipcMysql.RETRIEVE_TRANSACTIONS, (event, results, status) => {
+            ipcRenderer.once(ipcMysql.DELETE_TRANSACTION, (event, results, status) => {
                 if (status === ipcMysql.SUCCESS) {
-					const transactions = this.props.transactions || [];
+                    const transactions = this.props.transactions || [];
 					this.setState({
 						transactionsTable: this._populateTransactionsTable(transactions.filter(transaction =>
-							parseInt(transaction.id, 10) !== parseInt(id, 10)
+                            parseInt(transaction.id, 10) !== parseInt(id, 10)
 						))
-                    })
-                }     
+                    });
+                }  
             });     
         }
     }

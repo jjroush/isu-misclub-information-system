@@ -40,7 +40,6 @@ const sqlActions = (mysql, logger) => ({
 	},
 	[ipcMysql.RETRIEVE_EVENTS_TODAY]: async () => {
 		try {
-			mysql.findEventsToday().then(function(result) {console.log(result)});
 			return await mysql.findEventsToday();
 		} catch (error) {
 			const errorMessage = 'Error while retrieving events for today';
