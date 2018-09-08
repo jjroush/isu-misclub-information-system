@@ -213,6 +213,13 @@ class mysqlManager {
 		);
 	}
 
+	createTransaction(name, date, withdrawl, netid, amount) {
+		return this.sqlQueryHandler(
+			`INSERT INTO ${is_transaction} (name, date, withdrawl, netid, amount) VALUES (?,?,?,?,?)`,
+			[name, date, withdrawl, netid, amount]
+		);
+	}
+
 	deleteTransaction(id) {
 		return this.sqlQueryHandler(
 			`DELETE FROM ${is_transaction} WHERE id=?`,

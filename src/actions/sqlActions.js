@@ -11,9 +11,18 @@ const { dialog } = require('electron'),
 const sqlActions = (mysql, logger) => ({
 	[ipcMysql.RETRIEVE_TRANSACTIONS]: async () => {
 		try {
-			return await mysql.getTransactions();
+			return await mysql.getTransactions(name, date, withdrawl, netid, amount);
 		} catch (error) {
 			const errorMessage = 'Error while retrieving transactions';
+			logger.error(error, errorMessage, true);
+			throw new Error(errorMessage);
+		}
+	},
+	[ipcMysql.CREATE_TRANSACTIONS]: async () => {
+		try {
+			return await sqlActions.createTransaction();
+		} catch (error) {
+			const errorMessage = 'Error while creating transactions';
 			logger.error(error, errorMessage, true);
 			throw new Error(errorMessage);
 		}
