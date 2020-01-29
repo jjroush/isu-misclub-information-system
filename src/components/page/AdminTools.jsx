@@ -5,6 +5,7 @@ export default class AdminTools extends React.Component {
 	render() {
 		return (
 			<div>
+				<h1>{"Email Script"}</h1>
 
 			</div>
 		);
